@@ -1,0 +1,18 @@
+{
+    "name": "deoli/projet_restaurant",
+    "description": "Application PHP objet  pour la gestion des commandes d'un restaurant",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Diegoodlvv",
+            "email": "deoliveiradiego953@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
