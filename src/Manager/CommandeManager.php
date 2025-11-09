@@ -116,4 +116,11 @@ class CommandeManager extends LoginDatabase
             return $commande;
         }
     }
+
+    public function delete(Commande $commande): void
+    {
+        $query = $this->getPdo()->prepare('DELETE FROM ' . self::TABLE . ' WHERE id = :id');
+        $query->bindValue(':id', $commande->getId());
+        $query->execute();
+    }
 }

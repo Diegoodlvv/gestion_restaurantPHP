@@ -14,7 +14,13 @@ class Commande
         protected EnumStatutCommande $statut,
         protected float $total,
         protected array $plats,
+        protected ?int $id = null
     ) {}
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
 
     public function getServeur(): Utilisateur
     {
@@ -66,7 +72,8 @@ class Commande
             $user,
             $statut,
             $dataCommande['total'],
-            $plats
+            $plats,
+            $dataCommande['id']
         );
     }
 }

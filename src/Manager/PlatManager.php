@@ -9,6 +9,15 @@ class PlatManager extends LoginDatabase
 {
     protected const TABLE = "plat";
 
+    public function bindValuePlat($requete, Plat $plat): void
+    {
+        $requete->bindValue(':nom', $plat->getNom());
+        $requete->bindValue(':description', $plat->getDescription());
+        $requete->bindValue(':prix', $plat->getPrix());
+        $requete->bindValue(':categorie', $plat->getCategorie());
+        $requete->bindValue(':disponible', $plat->getDisponibilitee());
+    }
+
     public function getPlat(int|array $id): ?Plat
     {
         $query = $this->getPdo()->prepare('SELECT * FROM ' . self::TABLE . ' WHERE id = :id');
@@ -37,5 +46,27 @@ class PlatManager extends LoginDatabase
         } else {
             return $plats;
         }
+    }
+
+    public function add(Plat $plat): ?Plat
+    {
+        $query = $this->getPdo()->prepare("INSERT INTO " . self::TABLE . " (nom, description, prix, categorie, disponible) values (:nom, :description, :prix, :categorie, :disponible)");
+        $this->bindValuePlat($query, $plat);
+
+        $id = $this->getPdo()->lastInsertId();
+
+        if ($id == null) {
+            return null;
+        } else {
+            $commande = $this->getPlat($id);
+            return $commande;
+        }
+    }
+
+    public function deletePlat(?Plat $plat): void
+    {
+        $query = $this->getPdo()->prepare('DELETE FROM ' . self::TABLE . ' WHERE id = :id');
+        $query->bindValue(':id', $plat->getId());
+        $query->execute();
     }
 }
