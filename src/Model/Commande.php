@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Model;
 
 use App\Enum\EnumStatutCommande;
 use App\Manager\CommandePlatManager;
