@@ -10,7 +10,7 @@ abstract class LoginDatabase
     protected string $pass;
     protected ?\PDO $pdo = null;
 
-    public function __construct(string $dbName = "footclub", string $user = "root", string $pass = "")
+    public function __construct(string $dbName = "projet_restaurant", string $user = "root", string $pass = "")
     {
         $this->dbName = $dbName;
         $this->user = $user;
