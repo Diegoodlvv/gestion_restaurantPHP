@@ -42,4 +42,17 @@ class UtilisateurManager extends LoginDatabase
 
         return false;
     }
+
+    public function authentification(string $mail, string $password)
+    {
+        $users = $this->getUsers();
+
+        foreach ($users as $userBDD) {
+            if ($userBDD->getEmail() == $mail && password_verify($password, $userBDD->getMdp())) {
+                return $userBDD;
+            }
+        }
+
+        return false;
+    }
 }
