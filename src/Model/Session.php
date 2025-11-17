@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Model\Utilisateur;
 
 class Session
 {
@@ -18,6 +19,16 @@ class Session
         if (session_start()) {
             session_destroy();
         }
+    }
+
+    public static function newSessionUser(string $name, Utilisateur $user)
+    {
+        $_SESSION[$name] = [
+            "id" => $user->getId(),
+            "name" => $user->getNom(),
+            "email" => $user->getEmail(),
+            "role" => $user->getRole()
+        ];
     }
 
     public static function setMessage(string $class, bool $success)

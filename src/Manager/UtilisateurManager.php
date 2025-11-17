@@ -23,14 +23,22 @@ class UtilisateurManager extends LoginDatabase
         return $users;
     }
 
-    public function verifyServeur(Utilisateur $user): void
+    public static function redirectionRole(Utilisateur $user): void
     {
+        if (!$user) {
+            header('Location: login.php');
+        }
+
         if ($user->getRole()->name == 'serveur') {
-            header('Location: index.php');
+            header('Location: serveur/home.php');
+        } else if ($user->getRole()->name == 'manager') {
+            header('Location: manager/home.php');
+        } else if ($user->getRole()->name == 'chef') {
+            header('Location: chef/home.php');
         }
     }
 
-    public function verifyUserExistance(string $email, array $users): bool
+    public  function verifyUserExistance(string $email, array $users): bool
     {
         foreach ($users as $user) {
             if ($email === $user->getEmail()) {

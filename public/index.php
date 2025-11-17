@@ -5,6 +5,7 @@ require_once '../includes/head.php';
 use App\Manager\UtilisateurManager;
 use App\Model\Form;
 use App\Model\Error;
+use App\Model\Session;
 use App\Model\Utilisateur;
 
 $errors = new Error();
@@ -29,8 +30,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if (!$manager->authentification($data['email'], $data['password'])) {
             $errors->addError('email', 'Identifiant ou mot de passe incorrect');
-        } else{
-            $userConnecte = 
+        } else {
+            $userConnecte = $userBDD;
+        }
+
+        if ($userConnecte) {
+            Session::newSessionUser('user', $userConnecte);
+            UtilisateurManager::redirectionRole($userConnecte);
         }
     }
 }
