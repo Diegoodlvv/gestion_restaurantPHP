@@ -28,11 +28,14 @@ final class Form
         return array_map('htmlspecialchars', $this->data);
     }
 
-    public function isEmpty(string $field): void
+    public function isEmpty(string $field): bool
     {
         if (empty(trim($this->data[$field] ?? ''))) {
             $this->errors->addError($field, "Le champ $field est requis.");
+            return true;
         }
+
+        return false;
     }
 
     public function getChamp(string $field): void
@@ -40,6 +43,11 @@ final class Form
         foreach ($this->errors->getErrors($field) as $msg) {
             echo "<div style='color:red; text-transform:lowercase;'>$msg</div>";
         }
+    }
+
+    public function getErrors(): array
+    {
+        return $this->errors->all();
     }
 
     public function isEmailValid($champ)

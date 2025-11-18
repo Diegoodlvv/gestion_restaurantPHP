@@ -32,6 +32,10 @@ body {
     color: var(--accent);
 }
 
+.error {
+    color: red;
+}
+
 
 .page-login {
     min-height: 100vh;
