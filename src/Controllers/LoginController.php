@@ -32,7 +32,6 @@ class LoginController
                 $this->form->isEmpty('password');
             }
 
-
             $data = $this->form->getData();
 
             if ($this->errors->isFormValid()) {
@@ -41,19 +40,19 @@ class LoginController
                 if (!$manager->authentification($data['email'], $data['password'])) {
                     $this->errors->addError('email', 'Identifiant ou mot de passe incorrect');
                 } else {
-                    $userConnecte = $userBDD ?? null;
+                    $userConnecte = $manager->authentification($data['email'], $data['password']);
                 }
 
                 if (!empty($userConnecte)) {
                     Session::newSessionUser('user', $userConnecte);
                     UtilisateurManager::redirectionRole($userConnecte);
+                    var_dump($userConnecte);
                 }
             }
         }
 
-
         return [
-            'formData' => $data,
+            'formData' => $this->form->getData(),
             'formErrors' => $this->form->getErrors(),
         ];
     }

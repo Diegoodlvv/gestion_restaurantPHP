@@ -2,6 +2,7 @@
 
 namespace App\Manager;
 
+use App\Enum\EnumRoleUtilisateur;
 use App\Model\LoginDatabase;
 use App\Model\Utilisateur;
 
@@ -30,11 +31,11 @@ class UtilisateurManager extends LoginDatabase
         }
 
         if ($user->getRole()->name == 'serveur') {
-            header('Location: serveur/home.php');
+            header('Location: serveur/');
         } else if ($user->getRole()->name == 'manager') {
-            header('Location: manager/home.php');
-        } else if ($user->getRole()->name == 'chef') {
-            header('Location: chef/home.php');
+            header('Location: manager/');
+        } else if ($user->getRole() == EnumRoleUtilisateur::from('chef')) {
+            header('Location: chef/');
         }
     }
 

@@ -52,7 +52,7 @@ final class Form
 
     public function isEmailValid($champ)
     {
-        if (!filter_var($this->getChamp($champ), FILTER_VALIDATE_EMAIL)) {
+        if (!filter_var($this->data[$champ], FILTER_VALIDATE_EMAIL)) {
             $this->errors->addError($champ, "L'addresse mail renseignée n'est pas valide");
         }
     }
@@ -63,6 +63,4 @@ final class Form
             $this->errors->addError($champ, "Le score ne peut pas être négatif");
         }
     }
-
-    public function authentificate($user, $mdp): void {}
 }
