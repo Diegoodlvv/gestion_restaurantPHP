@@ -34,7 +34,8 @@ class UtilisateurManager extends LoginDatabase
             header('Location: serveur/');
         } else if ($user->getRole()->name == 'manager') {
             header('Location: manager/');
-        } else if ($user->getRole() == EnumRoleUtilisateur::from('chef')) {
+        } else if ($user->getRole() == EnumRoleUtilisateur::from('chef
+        ')) {
             header('Location: chef/');
         }
     }

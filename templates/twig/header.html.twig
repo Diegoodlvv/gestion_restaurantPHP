@@ -2,15 +2,14 @@
 	<div class="container header-inner">
 
 		<div class="logo">
-			<a href="{{ path('home') }}">🍷 Restaurant Manager</a>
+			<a href="index.php">🍷 Restaurant Manager</a>
 		</div>
 
 		<nav class="nav">
 			<ul>
-				<li><ahref="{{ path('dashboard') }}">Dashboard</a></li>
-				<li><ahref="{{ path('commande_list') }}">Commandes</a></li>
-				<li><ahref="{{ path('plat_list') }}">Plats</a></li>
-				<li><ahref="{{ path('serveurs_list') }}">Serveurs</a></li>
+				<li><ahref="commandes.php">Commandes</a></li>
+				<li><ahref="listePlats.php">Plats</a></li>
+				<li><ahref="listeServeurs.php">Serveurs</a></li>
 			</ul>
 		</nav>
 
@@ -18,9 +17,9 @@
 			{% if app.session.get('user') %}
 				<span class="user-name">👤
 					{{ app.session.get('user').prenom }}</span>
-				<a class="btn-logout" href="{{ path('logout') }}">Déconnexion</a>
+				<a class="btn-logout" href="../deconnexion.php">Déconnexion</a>
 			{% else %}
-				<a class="btn-login" href="{{ path('login') }}">Connexion</a>
+				<a class="btn-login" href="../login.php">Connexion</a>
 			{% endif %}
 		</div>
 
