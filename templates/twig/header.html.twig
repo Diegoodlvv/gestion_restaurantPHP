@@ -6,11 +6,13 @@
 		</div>
 
 		<nav class="nav">
-			<ul>
-				<li><a href="commandes.php">Commandes</a></li>
-				<li><a href="listePlats.php">Plats</a></li>
-				<li><a href="listeServeurs.php">Serveurs</a></li>
-			</ul>
+			{% if user %}
+				<ul>
+					<li><a href="commandes.php">Commandes</a></li>
+					<li><a href="listePlats.php">Plats</a></li>
+					<li><a href="listeServeurs.php">Serveurs</a></li>
+				</ul>
+			{% endif %}
 		</nav>
 
 		<div class="user-actions">
