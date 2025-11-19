@@ -2,7 +2,6 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    width: 100%;
 }
 
 /* --- Layout global --- */
@@ -22,6 +21,14 @@ body {
     padding: 40px 5vw;
 }
 
+.container {
+    padding: 15px 5vw;
+    height: fit-content;
+    z-index: 1;
+    max-width: 1400px;
+    margin: 180px auto 0 auto;
+}
+
 /* =========================
 	HEADER
 ========================= */
@@ -31,9 +38,6 @@ body {
     background: #2b1a14;
     color: #e8d8c3;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    position: absolute;
-    top: 0;
-    z-index: 1;
 }
 
 .header-content {
@@ -102,11 +106,7 @@ body {
 .app-footer {
     background: #2b1a14;
     color: #e8d8c3;
-    margin-top: 60px;
-    position: absolute;
-    z-index: 1;
-    bottom: 0;
-    width: 100%;
+    margin-top: auto;
 }
 
 .footer-content {
@@ -164,11 +164,6 @@ body {
 /* =========================
    DASHBOARD CHEF
 ========================= */
-
-.chef-dashboard {
-    max-width: 1400px;
-    margin: 180px auto 0 auto;
-}
 
 .chef-title {
     font-size: 2.2rem;

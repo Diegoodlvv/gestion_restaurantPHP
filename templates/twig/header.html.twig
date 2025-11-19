@@ -3,20 +3,24 @@
 
 		<div class="header-logo">🍷 Restaurant Manager</div>
 
-		<nav class="header-nav">
-			<a href="/dashboard" class="nav-link">Dashboard</a>
-			<a href="/menus" class="nav-link">Menus</a>
-			<a href="/commandes" class="nav-link">Commandes</a>
-			<a href="/reservations" class="nav-link">Réservations</a>
-		</nav>
+		{% if user %}
+
+			<nav class="header-nav">
+				<a href="/dashboard" class="nav-link">Dashboard</a>
+				<a href="/menus" class="nav-link">Menus</a>
+				<a href="/commandes" class="nav-link">Commandes</a>
+				<a href="/reservations" class="nav-link">Réservations</a>
+			</nav>
+
+		{% endif %}
 
 		<div class="header-user">
 			{% if user %}
 				<div class="header-username">👤
 					{{ user.name }}</div>
-				<a class="header-btn-logout" href="/logout">Déconnexion</a>
+				<a class="header-btn-logout" href="../include/unlogin.php">Déconnexion</a>
 			{% else %}
-				<a class="header-btn-login" href="/login">Connexion</a>
+				<a class="header-btn-login" href="../include/login.php">Connexion</a>
 			{% endif %}
 		</div>
 
