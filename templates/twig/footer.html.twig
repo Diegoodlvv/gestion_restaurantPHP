@@ -1,16 +1,40 @@
-<footer class="main-footer">
-	<div class="container footer-inner">
+<div class="app-footer">
+	<div class="footer-content">
 
-		<div class="footer-left">
-			<h4>Restaurant Manager</h4>
-			<p>Application de gestion de restaurant — commandes, plats, serveurs.</p>
+		<div class="footer-section">
+			<div class="footer-logo">🍷 Restaurant Manager</div>
+			<p class="footer-text">Outil de gestion moderne pour restaurateurs.</p>
 		</div>
 
-		<div class="footer-right">
-			<p>©
-				{{ "now"|date("Y") }}
-				— Tous droits réservés</p>
+		<div class="footer-section">
+			<h4 class="footer-title">Liens rapides</h4>
+			<ul class="footer-list">
+				<li>
+					<a href="/dashboard">Dashboard</a>
+				</li>
+				<li>
+					<a href="/menus">Menus</a>
+				</li>
+				<li>
+					<a href="/commandes">Commandes</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="footer-section">
+			<h4 class="footer-title">Contact</h4>
+			<ul class="footer-list">
+				<li>📍 Paris</li>
+				<li>📞 06 00 00 00 00</li>
+				<li>✉️ support@restaurant.com</li>
+			</ul>
 		</div>
 
 	</div>
-</footer>
+
+	<div class="footer-bottom">
+		©
+		{{ "now"|date("Y") }}
+		Restaurant Manager — Tous droits réservés
+	</div>
+</div>

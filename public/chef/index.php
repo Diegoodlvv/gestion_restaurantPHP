@@ -12,6 +12,6 @@ $twig = new Environment($loader);
 
 UtilisateurManager::isUserConnected();
 
-echo $twig->render('base.html.twig', [
+echo $twig->render('chef.html.twig', [
     'user' => Session::getSession('user'),
 ]);

@@ -1,0 +1,99 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Dashboard Chef
+{% endblock %}
+
+{% block content %}
+
+	<div class="chef-dashboard">
+
+		<h1 class="chef-title">Dashboard du Chef</h1>
+
+		<!-- ====== STATISTIQUES ======= -->
+		<div class="chef-stats">
+
+			<div class="chef-card">
+				<div class="chef-card-label">Commandes du jour</div>
+				<div class="chef-card-value">{{ stats.commandesJour }}</div>
+			</div>
+
+			<div class="chef-card">
+				<div class="chef-card-label">Plats envoyés</div>
+				<div class="chef-card-value">{{ stats.platsEnvoyes }}</div>
+			</div>
+
+			<div class="chef-card">
+				<div class="chef-card-label">Plats en attente</div>
+				<div class="chef-card-value">{{ stats.platsAttente }}</div>
+			</div>
+		</div>
+
+		<!-- ====== COMMANDES EN COURS ======= -->
+		<h2 class="chef-subtitle">Commandes en cours</h2>
+
+		<div class="chef-orders">
+
+			{% for commande in commandes %}
+				<div class="chef-order-card">
+
+					<div class="chef-order-header">
+						<span class="chef-order-id">#{{ commande.id }}</span>
+						<span class="chef-order-status chef-status-{{ commande.statut|lower }}">
+							{{ commande.statut }}
+						</span>
+					</div>
+
+					<div class="chef-order-body">
+						<p>Serveur :
+							<strong>{{ commande.serveur }}</strong>
+						</p>
+						<p>Total :
+							<strong>{{ commande.total }}
+								€</strong>
+						</p>
+						<p>Plats :</p>
+
+						<ul class="chef-order-plats">
+							{% for plat in commande.plats %}
+								<li>{{ plat.nom }}
+									(x{{ plat.qtt }})</li>
+							{% endfor %}
+						</ul>
+					</div>
+
+					<div class="chef-order-actions">
+						<a href="/commandes/{{ commande.id }}" class="chef-btn-view">Voir</a>
+					</div>
+
+				</div>
+			{% else %}
+				<p class="chef-empty">Aucune commande en cours.</p>
+			{% endfor %}
+
+		</div>
+
+		<!-- ====== ACCES RAPIDES ====== -->
+		<h2 class="chef-subtitle">Accès rapides</h2>
+
+		<div class="chef-quick-links">
+
+			<a class="chef-link-card" href="/menus">
+				<span class="chef-link-icon">📖</span>
+				Gérer les menus
+			</a>
+
+			<a class="chef-link-card" href="/commandes">
+				<span class="chef-link-icon">🧾</span>
+				Gérer les commandes
+			</a>
+
+			<a class="chef-link-card" href="/reservations">
+				<span class="chef-link-icon">📅</span>
+				Gérer les Serveurs
+			</a>
+
+		</div>
+
+	</div>
+
+{% endblock %}
