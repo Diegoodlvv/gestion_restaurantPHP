@@ -1,17 +1,18 @@
 <?php
 
-require_once '../includes/head.php';
+require_once '../../includes/head.php';
 
 use App\Controllers\LoginController;
+use App\Model\Session;
 use Twig\Loader\FilesystemLoader;
 use Twig\Environment;
 
-$loader = new FilesystemLoader('../templates/twig');
+$loader = new FilesystemLoader('../../templates/');
 $twig = new Environment($loader);
 
 
 $controller = new LoginController($_POST ?? []);
-$data = $controller->handle();
+$data = $controller->connexion();
 
 
 

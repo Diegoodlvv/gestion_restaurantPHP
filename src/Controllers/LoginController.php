@@ -18,7 +18,7 @@ class LoginController
         $this->form = new Form($postData, $this->errors);
     }
 
-    public function handle(): array
+    public function connexion(): array
     {
         $userConnecte = null;
 
@@ -46,7 +46,6 @@ class LoginController
                 if (!empty($userConnecte)) {
                     Session::newSessionUser('user', $userConnecte);
                     UtilisateurManager::redirectionRole($userConnecte);
-                    var_dump($userConnecte);
                 }
             }
         }

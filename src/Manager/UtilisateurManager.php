@@ -4,6 +4,7 @@ namespace App\Manager;
 
 use App\Enum\EnumRoleUtilisateur;
 use App\Model\LoginDatabase;
+use App\Model\Session;
 use App\Model\Utilisateur;
 
 class UtilisateurManager extends LoginDatabase
@@ -24,19 +25,33 @@ class UtilisateurManager extends LoginDatabase
         return $users;
     }
 
-    public static function redirectionRole(Utilisateur $user): void
+    public static function isUserConnected(): bool
     {
-        if (!$user) {
-            header('Location: login.php');
+        if (Session::getSession('user') === null) {
+            UtilisateurManager::backToLogin();
+            return false;
         }
 
-        if ($user->getRole()->name == 'serveur') {
-            header('Location: serveur/');
-        } else if ($user->getRole()->name == 'manager') {
-            header('Location: manager/');
-        } else if ($user->getRole() == EnumRoleUtilisateur::from('chef
-        ')) {
-            header('Location: chef/');
+        return true;
+    }
+
+    public static function backToLogin(): void
+    {
+        header('Location: ../include/login.php');
+    }
+
+    public static function redirectionRole(Utilisateur $user): void
+    {
+        // if (!$user) {
+        //     header('Location: login.php');
+        // }
+
+        if ($user->getRole()->name == EnumRoleUtilisateur::from('serveur')) {
+            header('Location: ../serveur/');
+        } else if ($user->getRole()->name == EnumRoleUtilisateur::from('manager')) {
+            header('Location: ../manager/');
+        } else if ($user->getRole() == EnumRoleUtilisateur::from('chef')) {
+            header('Location: ../chef/index.php');
         }
     }
 

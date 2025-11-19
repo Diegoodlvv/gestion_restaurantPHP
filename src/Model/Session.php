@@ -21,6 +21,11 @@ class Session
         }
     }
 
+    public static function getSession(string $name): ?array
+    {
+        return $_SESSION[$name] ?? null;
+    }
+
     public static function newSessionUser(string $name, Utilisateur $user)
     {
         $_SESSION[$name] = [
@@ -29,6 +34,8 @@ class Session
             "email" => $user->getEmail(),
             "role" => $user->getRole()
         ];
+
+        var_dump($_SESSION);
     }
 
     public static function setMessage(string $class, bool $success)
