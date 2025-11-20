@@ -1,28 +1,45 @@
 {% extends 'base.html.twig' %}
 {% block content %}
-	<div class="page-login">
-		<div class="login-layout">
-			<main class="login-card" role="main" aria-labelledby="login-title">
-				<h2 id="login-title">Se connecter</h2>
 
-				<form class="form-login" method="post" novalidate>
+	<div class="lux-login-wrapper">
+		<main class="lux-login-main">
 
-					<div class="input-group">
-						<label for="email">Email</label>
-						<input id="email" name="email" type="email" required placeholder="votre@exemple.com" value="{{ formData.email|e }}" autocomplete="email"/>
+			<div class="lux-login-card">
+				<h2 class="lux-login-card-title">Bienvenue</h2>
+				<p class="lux-login-subtitle">Connectez-vous pour accéder à votre espace</p>
+
+				{% if formErrors.global %}
+					<div class="lux-login-error-global">{{ formErrors.global }}</div>
+				{% endif %}
+
+				<form method="post" class="lux-login-form">
+
+					<div class="lux-login-field">
+						<label class="lux-login-label">Email</label>
+						<input type="email" name="email" class="lux-login-input" value="{{ formData.email }}" required>
+						{% if formErrors.email %}
+							<div class="lux-login-error">{{ formErrors.email }}</div>
+						{% endif %}
 					</div>
-					<div class="error">{{ formErrors.email[0] }}</div>
 
-
-					<div class="input-group">
-						<label for="password">Mot de passe</label>
-						<input id="password" name="password" type="password" required placeholder="••••••••" autocomplete="current-password"/>
+					<div class="lux-login-field">
+						<label class="lux-login-label">Mot de passe</label>
+						<input type="password" name="password" class="lux-login-input" required>
+						{% if formErrors.password %}
+							<div class="lux-login-error">{{ formErrors.password }}</div>
+						{% endif %}
 					</div>
-					<div class="error">{{ formErrors.password[0] }}</div>
 
-					<button class="btn-primary" type="submit">Se connecter</button>
+					<button class="lux-login-btn" type="submit">Connexion</button>
 				</form>
-			</main>
-		</div>
+
+				<div class="lux-login-links">
+					<a href="#" class="lux-login-link">Mot de passe oublié ?</a>
+					<a href="#" class="lux-login-link">Créer un compte</a>
+				</div>
+
+			</div>
+
+		</main>
 	</div>
 {% endblock content %}
